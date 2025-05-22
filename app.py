@@ -1,7 +1,7 @@
 import streamlit as st
 from pgd_bot import PGD_Person_Mod, PGD_Pair
 
-# ✅ Эта строка должна быть первой Streamlit-командой
+# Первая команда Streamlit
 st.set_page_config(page_title="Диагностика личности и пары", layout="wide")
 
 # ============================
@@ -24,27 +24,27 @@ if submit_personal:
         tasks = person.tasks()
         periods = person.periods_person()
 
-        st.subheader(f"📌 Результаты для {name}")
+        st.markdown(f"<h3>📌 Результаты для {name}</h3>", unsafe_allow_html=True)
 
-        st.markdown("### 🔹 Точки личности")
+        st.markdown("<h4>🔹 Точки личности</h4>", unsafe_allow_html=True)
         for group, values in points.items():
-            st.markdown(f"**{group}**")
+            st.markdown(f"<b>{group}</b>", unsafe_allow_html=True)
             for key, value in values.items():
-                st.write(f"• {key}: `{value}`")
+                st.markdown(f"<p style='font-size:18px;'>• <b>{key}</b>: <code>{value}</code></p>", unsafe_allow_html=True)
 
-        st.markdown("### 🌟 Сверхзадачи")
+        st.markdown("<h4>🌟 Сверхзадачи</h4>", unsafe_allow_html=True)
         for key, value in tasks.items():
-            st.write(f"• {key}: `{value}`")
+            st.markdown(f"<p style='font-size:18px;'>• <b>{key}</b>: <code>{value}</code></p>", unsafe_allow_html=True)
 
-        st.markdown("### 🧭 Бизнес-периоды")
+        st.markdown("<h4>🧭 Бизнес-периоды</h4>", unsafe_allow_html=True)
         for key, value in periods["Бизнес периоды"].items():
-            st.write(f"• {key}: `{value}`")
+            st.markdown(f"<p style='font-size:18px;'>• <b>{key}</b>: <code>{value}</code></p>", unsafe_allow_html=True)
 
     except Exception as e:
         st.error(f"Ошибка в личной диагностике: {e}")
 
 # ============================
-# 👨‍👩‍👧‍👦 Диагностика пары
+# ❤️ Диагностика пары
 # ============================
 
 st.title("❤️ Диагностика пары")
@@ -65,25 +65,25 @@ if submit_pair:
         periods = pair.periods_pair()
         partner_tasks = pair.tasks_business()
 
-        st.subheader(f"📌 Результаты для пары: {name1} и {name2}")
+        st.markdown(f"<h3>📌 Результаты для пары: {name1} и {name2}</h3>", unsafe_allow_html=True)
 
-        st.markdown("### 🔹 Точки пары")
+        st.markdown("<h4>🔹 Точки пары</h4>", unsafe_allow_html=True)
         for group, values in points.items():
-            st.markdown(f"**{group}**")
+            st.markdown(f"<b>{group}</b>", unsafe_allow_html=True)
             for key, value in values.items():
-                st.write(f"• {key}: `{value}`")
+                st.markdown(f"<p style='font-size:18px;'>• <b>{key}</b>: <code>{value}</code></p>", unsafe_allow_html=True)
 
-        st.markdown("### 🌟 Сверхзадачи")
+        st.markdown("<h4>🌟 Сверхзадачи</h4>", unsafe_allow_html=True)
         for key, value in tasks["Сверхзадачи"].items():
-            st.write(f"• {key}: `{value}`")
+            st.markdown(f"<p style='font-size:18px;'>• <b>{key}</b>: <code>{value}</code></p>", unsafe_allow_html=True)
 
-        st.markdown("### 🧭 Бизнес-периоды")
+        st.markdown("<h4>🧭 Бизнес-периоды</h4>", unsafe_allow_html=True)
         for key, value in periods["Бизнес периоды"].items():
-            st.write(f"• {key}: `{value}`")
+            st.markdown(f"<p style='font-size:18px;'>• <b>{key}</b>: <code>{value}</code></p>", unsafe_allow_html=True)
 
-        st.markdown("### 🔧 Задачи партнёров в паре")
+        st.markdown("<h4>🔧 Задачи партнёров в паре</h4>", unsafe_allow_html=True)
         for key, value in partner_tasks.items():
-            st.write(f"• {key}: `{value}`")
+            st.markdown(f"<p style='font-size:18px;'>• <b>{key}</b>: <code>{value}</code></p>", unsafe_allow_html=True)
 
     except Exception as e:
         st.error(f"Ошибка в диагностике пары: {e}")
